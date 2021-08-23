@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J
+SiO2,"['v1', 'v2lin', 'L', 'v3']",10-08-2021,300000000,1479.3028563976288,38

@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J
+HNO3,"['n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8', 'n9']",16-08-2021,300000000,169.05856662193935,41

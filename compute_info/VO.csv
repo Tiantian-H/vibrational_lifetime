@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J
+VO,"['State', 'v', 'Lambda', 'Sigma', 'Omega']",16-08-2021,300000000,11.229521544774373,26.5

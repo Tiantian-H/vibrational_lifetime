@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J,n_trans
+CH4,"['n1', 'n2', 'L2', 'n3', 'L3', 'M3', 'n4', 'L4', 'M4']",17-08-2021,300000000,1031.080564292272,8,120

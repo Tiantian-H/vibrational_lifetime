@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J
+SiH4,"['n1', 'n2', 'L2', 'n3', 'L3', 'M3', 'n4', 'L4', 'M4']",09-08-2021,200000000,2143.262695,11
