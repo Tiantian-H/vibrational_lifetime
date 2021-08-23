@@ -116,15 +116,6 @@ You will be able to see the list of all the molecules that you can calculate. Yo
 [<username>@exoweb vibrational_lifetime]$ python3 calculations.py
 ```
 
-Or use `nohup` to run program in backgrounder.
-
-```bash
-[<username>@exoweb vibrational_lifetime]$ mkdir log
-[<username>@exoweb vibrational_lifetime]$ cd ..
-[<username>@exoweb vibrational_lifetime]$ chmod u+x calculations.py
-[<username>@exoweb vibrational_lifetime]]$ nohup python3 calculations.py > ./data/log/calculations.log 2>&1 &
-```
-
 After the above-mentioned two steps, the file structure of this repository is (including the example outputs of some molecules):
 
 ```
