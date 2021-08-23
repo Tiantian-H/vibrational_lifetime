@@ -20,9 +20,10 @@ iso_info = pd.read_pickle("molecule_first_iso_final.pickle")
 all_molecules = set(iso_info["molecule"])
 diff_merged = pd.read_csv("diff_merged_utf8.csv")
 wrong_molecules = set(diff_merged["molecule"])
-
+add_wrong_modules = {'HF','LiH_p'}
 correct_molecules = all_molecules - wrong_molecules # ignore the molecules with wrong headers
 correct_molecules =  correct_molecules - {'trans-P2H2'} # data not available on the website
+correct_molecules = correct_molecules -add_wrong_modules 
 # ignore the molecules whose recommended linelist is MoLLIST since they are not complete which may lead to some very strange vibrational lifetimes.
 MoLLIST = set(iso_info.loc[iso_info["linelist"]=='MoLLIST','molecule']) 
 correct_molecules = correct_molecules - MoLLIST
@@ -30,7 +31,7 @@ correct_molecules = correct_molecules | {"CH","NH3","CO2","H3O_p","SiH","H3_p","
 
 print("The following molecules can be processed:")
 print(" ")
-print(correct_molecules)
+print(list(correct_molecules))
 print(" ")
 
 molecule = input("Please enter the name of the molecule:")
