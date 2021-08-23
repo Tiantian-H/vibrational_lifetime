@@ -31,9 +31,13 @@ mkdir <working_file>
 cd <working_file>
 git clone https://github.com/Tiantian-H/vibrational_lifetime.git
 ```
+## Alternatively : directly use the file called lifetime_example_file on the exoweb
+There's already a copy of the above-mentioned repository on the exoweb. You can use it instead of making a new clone. In this case, <working_file> equals to lifetime_example_file.
 
 ## Install Dependancies
+
 (Usage for the first time only)
+
 Please use the following Linux commands to install the packages needed for this project if they haven't been installed before.
 
 Take the library called glob as an example.
@@ -43,8 +47,11 @@ Take the library called glob as an example.
 ```
 
 ## Usage Instructions
+
 Suppose your current working directory on the exoweb is:
+
 /mnt/data/<working_file>/vibrational_lifetime
+
 Here vibrational_lifetime is the name of the GitHub repository you have just created.
 
 The original file structure without any outputs is:
@@ -61,15 +68,43 @@ The original file structure without any outputs is:
 ├── alternative_sql.py
 ```
 The explanations of these files are:
--linelist.csv: 
+
+1.linelist.csv
+
 A table contains which iso_slug and linelist to use for each molecule. (For some molecules, it's hard to automatically distiguish the information of the recommended linelist from the master file since it doesn't appear firstly in the master file. That's why a manually adjusted version is provided here.)
 
+2.def_processing.py
+
+This piece of code reads the information of molecules from linelist.csv to obtain the corresponding recommended line list for each molecule. Then it processes the def file for each molecule to extract useful information like the headers of the states file, etc. The output file is molecule_first_iso_final.csv and molecule_first_iso_final.pickle.
+
+3.find_diff.py (Optional)
+
+This piece of code finds out the molecules whose headers in the actual states file are not consistent with those extracted from the def file. The output file is diff_merged_utf8.csv. However, since diff_merged_utf8.csv has already been genrated in advance and exists in the repository, this code can be skipped.
+
+4.calculations.py 
+
+This is the main code for calculating the total lifetime and partial lifetime. You need to enter the name of the molecule that you want to calculate when you run the code each time.
+
+The output files are:
+
+a.compute_info/molecule: 
+This file contains some useful information for each calculation, like the date, the computing time, the vibrational state, the J value that maximizes the Boltzmann function P(J).
+
+b.decay_result/molecule/v3/molecule_date.csv:
+The decay lifetime and braching ratio.
+
+c.v3_result/molecule_v3_date:
+The total lifetime.
+
 Please use the following instructions to obtain the result.
+
+These are the main files needed for calculations. Apart from these, their are also some alternative files which calculate other version of the total lifetime or process the trans files using other methods. These codes are used in the discussion part of the report. They are not necessarily to be run.
 
 ###  Step 1 Process the def files
 
 ```bash
-[<username>@exoweb vibrational_lifetime]$ cd /mnt/data/<working_file>/vibrational_lifetime
+[<username>@exoweb vibrational_lifetime]$
+cd /mnt/data/<working_file>/vibrational_lifetime
 [<username>@exoweb vibrational_lifetime]$ chmod u+x def_processing.py
 [<username>@exoweb vibrational_lifetime]$ python3 def_processing.py
 ```
@@ -81,27 +116,14 @@ You will be able to see the list of all the molecules that you can calculate. Yo
 [<username>@exoweb vibrational_lifetime]$ python3 calculations.py
 ```
 
-Or use `nohup` to run program in backgrounder.
-
-```bash
-[<username>@exoweb vibrational_lifetime]$ mkdir log
-[<username>@exoweb vibrational_lifetime]$ cd ..
-[<username>@exoweb vibrational_lifetime]$ chmod u+x calculations.py
-[<username>@exoweb vibrational_lifetime]]$ nohup python3 calculations.py > ./data/log/calculations.log 2>&1 &
-```
-
 After the above-mentioned two steps, the file structure of this repository is (including the example outputs of some molecules):
 
 ```
 .
 ├── README.md
-├── linelist.csv
-├── def_processing.py
-├── find_diff.py
-├── diff_merged_utf8.csv
+├── alternative_byline.py
+├── alternative_sql.py
 ├── calculations.py
-├── molecule_first_iso_final.csv
-├── molecule_first_iso_final.pickle
 ├── compute_info
 │   ├── AlO.csv
 │   ├── CH4.csv
@@ -121,6 +143,9 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── CH4
 │   │   └── v3
 │   │       └── CH4_17-08-2021.csv
+│   ├── CS
+│   │   └── v3
+│   │       └── CS_23-08-2021.csv
 │   ├── H2O
 │   │   └── v3
 │   │       └── H2O_16-08-2021.csv
@@ -130,41 +155,71 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── HNO3
 │   │   └── v3
 │   │       └── HNO3_16-08-2021.csv
+│   ├── KCl
+│   │   └── v3
+│   │       └── KCl_23-08-2021.csv
 │   ├── NH3
 │   │   └── v3
 │   │       └── NH3_20-08-2021.csv
+│   ├── NaCl
+│   │   └── v3
+│   │       └── NaCl_23-08-2021.csv
+│   ├── NaH
+│   │   └── v3
+│   │       └── NaH_23-08-2021.csv
+│   ├── PN
+│   │   └── v3
+│   │       └── PN_23-08-2021.csv
+│   ├── ScH
+│   │   └── v3
+│   │       └── ScH_23-08-2021.csv
 │   ├── SiH2
 │   │   └── v3
-│   │       └── SiH2_11-08-2021.csv
+│   │       ├── SiH2_11-08-2021.csv
+│   │       └── SiH2_23-08-2021.csv
 │   ├── SiH4
 │   │   └── v3
 │   │       └── SiH4_21-08-2021.csv
 │   ├── SiO
 │   │   └── v3
-│   │       └── SiO_16-08-2021.csv
+│   │       ├── SiO_16-08-2021.csv
+│   │       └── SiO_23-08-2021.csv
 │   ├── SiO2
 │   │   └── v3
 │   │       └── SiO2_10-08-2021.csv
 │   └── VO
 │       └── v3
 │           └── VO_16-08-2021.csv
+├── def_processing.py
+├── diff_merged_utf8.csv
+├── find_diff.py
+├── linelist.csv
+├── molecule_first_iso_final.csv
+├── molecule_first_iso_final.pickle
 ├── total_life_three_versions.py
-├── alternative_byline.py
-├── alternative_sql.py
 └── v3_result
     ├── AlO_v3_16-08-2021.csv
     ├── CH4_v3_17-08-2021.csv
+    ├── CS_v3_23-08-2021.csv
     ├── H2O2_v3_16-08-2021.csv
     ├── H2O_v3_16-08-2021.csv
     ├── HNO3_v3_16-08-2021.csv
+    ├── KCl_v3_23-08-2021.csv
     ├── NH3_v3_20-08-2021.csv
+    ├── NaCl_v3_23-08-2021.csv
+    ├── NaH_v3_23-08-2021.csv
+    ├── PN_v3_23-08-2021.csv
+    ├── ScH_v3_23-08-2021.csv
     ├── SiH2_v3_11-08-2021.csv
+    ├── SiH2_v3_23-08-2021.csv
     ├── SiH4_v3_21-08-2021.csv
     ├── SiO2_v3_10-08-2021.csv
     ├── SiO_v3_16-08-2021.csv
+    ├── SiO_v3_23-08-2021.csv
     └── VO_v3_16-08-2021.csv
 
-25 directories, 44 files
+37 directories, 60 files
+
 ```
 Finally, there are some alternative codes used in the discussion part of the report. It's not uncessary run these codes to get the intended results.
 
