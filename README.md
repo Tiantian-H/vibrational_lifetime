@@ -31,9 +31,13 @@ mkdir <working_file>
 cd <working_file>
 git clone https://github.com/Tiantian-H/vibrational_lifetime.git
 ```
+## Alternatively : directly use the file called lifetime_example_file on the exoweb
+There's already a copy of the above-mentioned repository on the exoweb. You can use it instead of making a new clone. In this case, <working_file> equals to lifetime_example_file.
 
 ## Install Dependancies
+
 (Usage for the first time only)
+
 Please use the following Linux commands to install the packages needed for this project if they haven't been installed before.
 
 Take the library called glob as an example.
@@ -43,8 +47,11 @@ Take the library called glob as an example.
 ```
 
 ## Usage Instructions
+
 Suppose your current working directory on the exoweb is:
+
 /mnt/data/<working_file>/vibrational_lifetime
+
 Here vibrational_lifetime is the name of the GitHub repository you have just created.
 
 The original file structure without any outputs is:
@@ -61,15 +68,43 @@ The original file structure without any outputs is:
 ├── alternative_sql.py
 ```
 The explanations of these files are:
--linelist.csv: 
+
+1.linelist.csv
+
 A table contains which iso_slug and linelist to use for each molecule. (For some molecules, it's hard to automatically distiguish the information of the recommended linelist from the master file since it doesn't appear firstly in the master file. That's why a manually adjusted version is provided here.)
 
+2.def_processing.py
+
+This piece of code reads the information of molecules from linelist.csv to obtain the corresponding recommended line list for each molecule. Then it processes the def file for each molecule to extract useful information like the headers of the states file, etc. The output file is molecule_first_iso_final.csv and molecule_first_iso_final.pickle.
+
+3.find_diff.py (Optional)
+
+This piece of code finds out the molecules whose headers in the actual states file are not consistent with those extracted from the def file. The output file is diff_merged_utf8.csv. However, since diff_merged_utf8.csv has already been genrated in advance and exists in the repository, this code can be skipped.
+
+4.calculations.py 
+
+This is the main code for calculating the total lifetime and partial lifetime. You need to enter the name of the molecule that you want to calculate when you run the code each time.
+
+The output files are:
+
+a.compute_info/molecule: 
+This file contains some useful information for each calculation, like the date, the computing time, the vibrational state, the J value that maximizes the Boltzmann function P(J).
+
+b.decay_result/molecule/v3/molecule_date.csv:
+The decay lifetime and braching ratio.
+
+c.v3_result/molecule_v3_date:
+The total lifetime.
+
 Please use the following instructions to obtain the result.
+
+These are the main files needed for calculations. Apart from these, their are also some alternative files which calculate other version of the total lifetime or process the trans files using other methods. These codes are used in the discussion part of the report. They are not necessarily to be run.
 
 ###  Step 1 Process the def files
 
 ```bash
-[<username>@exoweb vibrational_lifetime]$ cd /mnt/data/<working_file>/vibrational_lifetime
+[<username>@exoweb vibrational_lifetime]$
+cd /mnt/data/<working_file>/vibrational_lifetime
 [<username>@exoweb vibrational_lifetime]$ chmod u+x def_processing.py
 [<username>@exoweb vibrational_lifetime]$ python3 def_processing.py
 ```
