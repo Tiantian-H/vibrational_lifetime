@@ -140,6 +140,8 @@ if molecule == "H2O":
     states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'N', 'Ka', 'Kc', 'v1', 'v2', 'v3','S', 'Gamma_rve'] 
 if molecule == "H2O2":
     states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'tau_i', 'G', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'tau', 'Gv', 'K', 'Pr', 'Gr', 'N(Bl', 'C2', 'n1', 'n2', 'n3', 'n4', 'n5', 'n6']
+if molecule == "NaH":
+    states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'tau_i','State','v']
 
 #['i','E_i','g','J_i','tau_i','+/-','e/f','State','v','Lambda','Sigma','Omega']
 #iso_info.loc[iso_info["molecule"]==molecule ,"headers"].values[0]
