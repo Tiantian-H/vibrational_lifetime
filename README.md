@@ -121,13 +121,9 @@ After the above-mentioned two steps, the file structure of this repository is (i
 ```
 .
 ├── README.md
-├── linelist.csv
-├── def_processing.py
-├── find_diff.py
-├── diff_merged_utf8.csv
+├── alternative_byline.py
+├── alternative_sql.py
 ├── calculations.py
-├── molecule_first_iso_final.csv
-├── molecule_first_iso_final.pickle
 ├── compute_info
 │   ├── AlO.csv
 │   ├── CH4.csv
@@ -147,6 +143,9 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── CH4
 │   │   └── v3
 │   │       └── CH4_17-08-2021.csv
+│   ├── CS
+│   │   └── v3
+│   │       └── CS_23-08-2021.csv
 │   ├── H2O
 │   │   └── v3
 │   │       └── H2O_16-08-2021.csv
@@ -156,41 +155,71 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── HNO3
 │   │   └── v3
 │   │       └── HNO3_16-08-2021.csv
+│   ├── KCl
+│   │   └── v3
+│   │       └── KCl_23-08-2021.csv
 │   ├── NH3
 │   │   └── v3
 │   │       └── NH3_20-08-2021.csv
+│   ├── NaCl
+│   │   └── v3
+│   │       └── NaCl_23-08-2021.csv
+│   ├── NaH
+│   │   └── v3
+│   │       └── NaH_23-08-2021.csv
+│   ├── PN
+│   │   └── v3
+│   │       └── PN_23-08-2021.csv
+│   ├── ScH
+│   │   └── v3
+│   │       └── ScH_23-08-2021.csv
 │   ├── SiH2
 │   │   └── v3
-│   │       └── SiH2_11-08-2021.csv
+│   │       ├── SiH2_11-08-2021.csv
+│   │       └── SiH2_23-08-2021.csv
 │   ├── SiH4
 │   │   └── v3
 │   │       └── SiH4_21-08-2021.csv
 │   ├── SiO
 │   │   └── v3
-│   │       └── SiO_16-08-2021.csv
+│   │       ├── SiO_16-08-2021.csv
+│   │       └── SiO_23-08-2021.csv
 │   ├── SiO2
 │   │   └── v3
 │   │       └── SiO2_10-08-2021.csv
 │   └── VO
 │       └── v3
 │           └── VO_16-08-2021.csv
+├── def_processing.py
+├── diff_merged_utf8.csv
+├── find_diff.py
+├── linelist.csv
+├── molecule_first_iso_final.csv
+├── molecule_first_iso_final.pickle
 ├── total_life_three_versions.py
-├── alternative_byline.py
-├── alternative_sql.py
 └── v3_result
     ├── AlO_v3_16-08-2021.csv
     ├── CH4_v3_17-08-2021.csv
+    ├── CS_v3_23-08-2021.csv
     ├── H2O2_v3_16-08-2021.csv
     ├── H2O_v3_16-08-2021.csv
     ├── HNO3_v3_16-08-2021.csv
+    ├── KCl_v3_23-08-2021.csv
     ├── NH3_v3_20-08-2021.csv
+    ├── NaCl_v3_23-08-2021.csv
+    ├── NaH_v3_23-08-2021.csv
+    ├── PN_v3_23-08-2021.csv
+    ├── ScH_v3_23-08-2021.csv
     ├── SiH2_v3_11-08-2021.csv
+    ├── SiH2_v3_23-08-2021.csv
     ├── SiH4_v3_21-08-2021.csv
     ├── SiO2_v3_10-08-2021.csv
     ├── SiO_v3_16-08-2021.csv
+    ├── SiO_v3_23-08-2021.csv
     └── VO_v3_16-08-2021.csv
 
-25 directories, 44 files
+37 directories, 60 files
+
 ```
 Finally, there are some alternative codes used in the discussion part of the report. It's not uncessary run these codes to get the intended results.
 
