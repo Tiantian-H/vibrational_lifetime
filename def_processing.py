@@ -58,7 +58,7 @@ for molecule in molecule_list:
             #exist_life_pos[tot-1] = 1
             exist_life_pos.append(1)
         else:
-            exist_life_pos.append(1)
+            exist_life_pos.append(0)
             no_life_def_filename.append(def_filename)
         E = list(def_df.loc[def_df['c2']=="energy",'c0'])
         if E == []:
