@@ -13,15 +13,15 @@ num_from_def = []
 
 for molecule in molecule_list:
     iso_slug = iso_info.loc[iso_info["molecule"]==molecule,"iso_slug"]
-    isotopologue = iso_info.loc[iso_info["molecule"]==molecule,"isotopologue"]
+    linelist = iso_info.loc[iso_info["molecule"]==molecule,"linelist"]
     if molecule == "CN":
-        isotopologue = 'Trihybrid'
+        linelist = 'Trihybrid'
     if molecule == 'trans-P2H2':
         continue
-    path_mol_iso_list = list(molecule+'/'+iso_slug+'/'+isotopologue)
+    path_mol_iso_list = list(molecule+'/'+iso_slug+'/'+linelist)
     if len(path_mol_iso_list) >0:
         path_mol_iso = path_mol_iso_list[0]
-        read_path = './data/www.exomol.com/db/'
+        read_path = '../../exomol/exomol3_data/'
         
         ## read states file
         # manually adjust headers due to incorrect def file
@@ -30,27 +30,31 @@ for molecule in molecule_list:
         s_df = dict()
         states_df = pd.DataFrame()
         states_filenames = glob.glob(read_path + path_mol_iso + '/' + path_mol_iso.split('/')[1]+ '__' + path_mol_iso.split('/')[2] + '.states.bz2')
-        states_filename = states_filenames[0]
-        s_df[states_filename] =pd.read_csv(states_filename, compression='bz2', sep='\s+',
-                                                header=None, 
-                                                chunksize=100_000_000, iterator=True,
-                                                low_memory=False)
-        
-        col_num  = s_df[states_filename].get_chunk(1).shape[1]
-
+        try:
+            states_filename = states_filenames[0]
+            s_df[states_filename] =pd.read_csv(states_filename, compression='bz2', sep='\s+',
+                                                    header=None, 
+                                                    chunksize=100_000_000, iterator=True,
+                                                    low_memory=False)
             
-        if col_num != len(states_col_name):
-            wrong_molecule.append(molecule)
-            num_from_def.append(len(states_col_name))
-            num_from_states.append(col_num)
-            
-        num = num +1
-        print(num)
+            col_num  = s_df[states_filename].get_chunk(1).shape[1]
+    
+                
+            if col_num != len(states_col_name):
+                wrong_molecule.append(molecule)
+                num_from_def.append(len(states_col_name))
+                num_from_states.append(col_num)
+                
+            num = num +1
+            #print(num)
+        except:
+            print(read_path + path_mol_iso + '/' + path_mol_iso.split('/')[1]+ '__' + path_mol_iso.split('/')[2] + '.states.bz2')
     else:
         continue
 
 diff_dict = {"molecule":wrong_molecule,"num_from_states":num_from_states,"num_from_def":num_from_def}
 diff_molecule = pd.DataFrame(diff_dict)
 
-diff_merged = pd.merge(diff_molecule,iso_info[["molecule","isotopologue","iso_slug","headers"]], on='molecule',how="left")
-diff_merged.to_csv("diff_merged.csv")
+diff_merged = pd.merge(diff_molecule,iso_info[["molecule","linelist","iso_slug","headers"]], on='molecule',how="left")
+diff_merged.to_csv("diff_merged_.csv")
+

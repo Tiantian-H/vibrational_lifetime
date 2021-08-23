@@ -23,7 +23,7 @@ iso_info = pd.read_pickle("molecule_first_iso_final.pickle")
 
 # ignore some molecules that cannot be processed at present
 all_molecules = set(iso_info["molecule"])
-diff_merged = pd.read_csv("diff_merged.csv")
+diff_merged = pd.read_csv("diff_merged_utf8.csv")
 wrong_molecules = set(diff_merged["molecule"])
 
 correct_molecules = all_molecules - wrong_molecules # ignore the molecules with wrong headers
@@ -105,10 +105,7 @@ else:
 
 path_mol_iso_list = list(molecule+'/'+iso_slug+'/'+isotopologue)
 path_mol_iso = path_mol_iso_list[0]
-read_path = '../exomol/exomol3_data/'
-#'../exomol/exomol3_data/'
-# './www.exomol.com/db/'
-#'../exomol/exomol3_data/'
+read_path = '../../exomol/exomol3_data/'
 
 ## read states file
 # manually adjust headers due to incorrect def file
@@ -304,7 +301,10 @@ num_file = 0
 for filename in filenames:
     with bz2.open(filename, 'rt') as bf:
         for line in bf:
-            i, f, A_if = line.split()
+            i = line.split()[0]
+            f = line.split()[1]
+            A_if = line.split()[2]
+
             cursor.execute(f"INSERT INTO data (i, f, A_if) VALUES ({i}, {f}, {A_if});")
         connection.commit()
         num_file += 1
