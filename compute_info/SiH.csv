@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J,n_trans
+SiH,"['State', 'v', 'Lambda', 'Sigma', 'Omega']",24-08-2021,300000000,0.16126023133595785,6.5,1

@@ -119,7 +119,7 @@ if molecule =="H3O_p":
 if molecule == "CO2":
     states_col_name = ['i','E_i','gtot','J_i','unc','Gamma','e/f','n1','n2lin','l2','n3','Ci','m1','m2','m3','m4','r','v1','v2','v3']
 if molecule == "SiH":
-    states_col_name = ['n','E_i','g_i','J_i','tau_i','g-factor','Parity','e/f','State','v','Lambda','Sigma','Omega']
+    states_col_name = ['i','E_i','g_i','J_i','tau_i','g-factor','Parity','e/f','State','v','Lambda','Sigma','Omega']
 if molecule == "SiH2":
     states_col_name = ['i','E_i','g_i','J_i','Gamma_tot','v1','v2','v3','Gamma_vib','Ka','Kc','Gamma_rot','C','n1','n2','n3']
 if molecule == "H3_p":
