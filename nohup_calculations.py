@@ -9,6 +9,13 @@ from tqdm import tqdm
 import os
 import time
 
+#############  choose which molecule to be processed #############
+molecule = "SO3"
+##################################################################
+
+# nohup python3 nohup_calculations.py > ./log/nohup_calculations.log 2>&1 &
+
+
 date = time.strftime("%d/%m/%Y")
 date = date.replace('/','-')
 start_time = time.time()
@@ -34,7 +41,7 @@ print(" ")
 print(list(correct_molecules))
 print(" ")
 
-molecule = input("Please enter the name of the molecule:")
+#molecule = input("Please enter the name of the molecule:")
 if molecule not in correct_molecules:
     raise IndexError("The header of this molecule in the def file is not consistent with the actual states file!")
 
