@@ -121,20 +121,39 @@ After the above-mentioned two steps, the file structure of this repository is (i
 ```
 .
 ├── README.md
+├── calculations.py
+├── nohup_calculations.py
+├── def_processing.py
+├── diff_merged_utf8.csv
+├── find_diff.py
+├── linelist.csv
+├── molecule_first_iso_final.csv
+├── molecule_first_iso_final.pickle
+├── total_life_three_versions.py
 ├── alternative_byline.py
 ├── alternative_sql.py
-├── calculations.py
 ├── compute_info
 │   ├── AlO.csv
 │   ├── CH4.csv
+│   ├── CS.csv
 │   ├── H2O.csv
 │   ├── H2O2.csv
+│   ├── H2_p.csv
+│   ├── H3_p.csv
+│   ├── HF.csv
 │   ├── HNO3.csv
+│   ├── KCl.csv
 │   ├── NH3.csv
+│   ├── NaCl.csv
+│   ├── NaH.csv
+│   ├── PN.csv
+│   ├── ScH.csv
 │   ├── SiH2.csv
 │   ├── SiH4.csv
 │   ├── SiO.csv
 │   ├── SiO2.csv
+│   ├── SiO_algorithms.csv
+│   ├── SiS.csv
 │   └── VO.csv
 ├── decay_result
 │   ├── AlO
@@ -145,13 +164,23 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   │       └── CH4_17-08-2021.csv
 │   ├── CS
 │   │   └── v3
-│   │       └── CS_23-08-2021.csv
+│   │       ├── CS_23-08-2021.csv
+│   │       └── CS_24-08-2021.csv
 │   ├── H2O
 │   │   └── v3
 │   │       └── H2O_16-08-2021.csv
 │   ├── H2O2
 │   │   └── v3
 │   │       └── H2O2_16-08-2021.csv
+│   ├── H2_p
+│   │   └── v3
+│   │       └── H2_p_24-08-2021.csv
+│   ├── H3_p
+│   │   └── v3
+│   │       └── H3_p_24-08-2021.csv
+│   ├── HF
+│   │   └── v3
+│   │       └── HF_24-08-2021.csv
 │   ├── HNO3
 │   │   └── v3
 │   │       └── HNO3_16-08-2021.csv
@@ -169,7 +198,8 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   │       └── NaH_23-08-2021.csv
 │   ├── PN
 │   │   └── v3
-│   │       └── PN_23-08-2021.csv
+│   │       ├── PN_23-08-2021.csv
+│   │       └── PN_24-08-2021.csv
 │   ├── ScH
 │   │   └── v3
 │   │       └── ScH_23-08-2021.csv
@@ -187,28 +217,29 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── SiO2
 │   │   └── v3
 │   │       └── SiO2_10-08-2021.csv
+│   ├── SiS
+│   │   └── v3
+│   │       └── SiS_24-08-2021.csv
 │   └── VO
 │       └── v3
 │           └── VO_16-08-2021.csv
-├── def_processing.py
-├── diff_merged_utf8.csv
-├── find_diff.py
-├── linelist.csv
-├── molecule_first_iso_final.csv
-├── molecule_first_iso_final.pickle
-├── total_life_three_versions.py
 └── v3_result
     ├── AlO_v3_16-08-2021.csv
     ├── CH4_v3_17-08-2021.csv
     ├── CS_v3_23-08-2021.csv
+    ├── CS_v3_24-08-2021.csv
     ├── H2O2_v3_16-08-2021.csv
     ├── H2O_v3_16-08-2021.csv
+    ├── H2_p_v3_24-08-2021.csv
+    ├── H3_p_v3_24-08-2021.csv
+    ├── HF_v3_24-08-2021.csv
     ├── HNO3_v3_16-08-2021.csv
     ├── KCl_v3_23-08-2021.csv
     ├── NH3_v3_20-08-2021.csv
     ├── NaCl_v3_23-08-2021.csv
     ├── NaH_v3_23-08-2021.csv
     ├── PN_v3_23-08-2021.csv
+    ├── PN_v3_24-08-2021.csv
     ├── ScH_v3_23-08-2021.csv
     ├── SiH2_v3_11-08-2021.csv
     ├── SiH2_v3_23-08-2021.csv
@@ -216,12 +247,15 @@ After the above-mentioned two steps, the file structure of this repository is (i
     ├── SiO2_v3_10-08-2021.csv
     ├── SiO_v3_16-08-2021.csv
     ├── SiO_v3_23-08-2021.csv
+    ├── SiO_v3_byline_23-08-2021.csv
+    ├── SiO_v3_sql_24-08-2021.csv
+    ├── SiS_v3_24-08-2021.csv
     └── VO_v3_16-08-2021.csv
 
-37 directories, 60 files
+45 directories, 86 files
 
 ```
-Finally, there are some alternative codes used in the discussion part of the report. It's not uncessary run these codes to get the intended results.
+Finally, there are some alternative codes used in the discussion part of the report. It's not uncessary to run these codes to get the intended results.
 
 1. total_life_three_versions.py:
 This gives three versions of the total lifetimes.
