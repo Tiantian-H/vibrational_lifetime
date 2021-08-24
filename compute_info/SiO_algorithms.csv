@@ -1,0 +1,4 @@
+molecule,labels,date,time (min),J,n_trans,algorithm
+SiO,['v'],23-08-2021,0.045943864186604816,22,1,byline
+molecule,labels,date,time (min),J,n_trans,algorithm
+SiO,['v'],23-08-2021,0.07809956471125284,22,1,sql

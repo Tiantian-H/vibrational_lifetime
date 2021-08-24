@@ -1,0 +1,2 @@
+molecule,labels,date,chunk_size,time (min),J,n_trans
+NaCl,['v'],23-08-2021,300000000,0.10903890132904052,40,1

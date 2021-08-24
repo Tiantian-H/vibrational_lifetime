@@ -1,2 +1,6 @@
 molecule,labels,date,chunk_size,time (min),J,n_trans
 SiO,['v'],16-08-2021,300000000,0.045937848091125486,22,1
+molecule,labels,date,chunk_size,time (min),J,n_trans
+SiO,['v'],23-08-2021,300000000,0.050663089752197264,22,1
+molecule,labels,date,chunk_size,time (min),J,n_trans
+SiO,['v'],23-08-2021,300000000,0.056823790073394775,22,1

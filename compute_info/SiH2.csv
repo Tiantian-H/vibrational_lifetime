@@ -1,2 +1,4 @@
 molecule,labels,date,chunk_size,time (min),J
 SiH2,"['v1', 'v2', 'v3']",11-08-2021,300000000,8.38759290377299,9
+molecule,labels,date,chunk_size,time (min),J,n_trans
+SiH2,"['v1', 'v2', 'v3']",23-08-2021,300000000,9.035851788520812,9,10

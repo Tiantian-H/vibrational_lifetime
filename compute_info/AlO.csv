@@ -1,2 +1,6 @@
 molecule,labels,date,chunk_size,time (min),J
 AlO,"['State', 'v', 'Lambda', 'Sigma', 'Omega']",16-08-2021,300000000,0.21139703591664633,23.5
+molecule,labels,date,chunk_size,time (min),J,n_trans
+AlO,"['State', 'v', 'Lambda', 'Sigma', 'Omega']",23-08-2021,300000000,0.21277150710423787,23.5,1
+molecule,labels,date,chunk_size,time (min),J,n_trans
+AlO,"['State', 'v', 'Lambda', 'Sigma', 'Omega']",23-08-2021,300000000,0.1725541353225708,23.5,1

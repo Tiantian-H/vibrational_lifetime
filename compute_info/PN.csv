@@ -1,0 +1,4 @@
+molecule,labels,date,chunk_size,time (min),J,n_trans
+PN,['v'],23-08-2021,300000000,0.12527534166971843,21,1
+molecule,labels,date,chunk_size,time (min),J,n_trans
+PN,['v'],24-08-2021,300000000,0.08140034675598144,21,1
