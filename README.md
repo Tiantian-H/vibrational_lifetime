@@ -6,9 +6,7 @@ By Tiantian He
 
 ## Purpose
 
-The project aims to construct a new database which contains the vibrational state lifetimes as well as the partial lifetimes decaying from each initial vibrational state to the corresponding final states. This will be done automatically by extracting and processing the line lists of numerous molecules from the ExoMol database.
-
-This project utilizes Python 3 as the programming language, and it’s run via Linux command on the exoweb.
+The project has constructed a new database that contains the vibrational state lifetimes as well as the partial lifetimes decaying from each initial state to their final states. This has been done using the molecule line lists extracted from the ExoMol database.
 
 ## Environment
 
@@ -60,9 +58,10 @@ The original file structure without any outputs is:
 ├── README.md
 ├── linelist.csv
 ├── def_processing.py
-├── find_diff.py
 ├── diff_merged_utf8.csv
 ├── calculations.py
+├── nohup_calculations.py
+├── find_diff.py
 ├── total_life_three_versions.py
 ├── alternative_byline.py
 ├── alternative_sql.py
@@ -121,14 +120,14 @@ After the above-mentioned two steps, the file structure of this repository is (i
 ```
 .
 ├── README.md
-├── calculations.py
-├── nohup_calculations.py
-├── def_processing.py
-├── diff_merged_utf8.csv
-├── find_diff.py
 ├── linelist.csv
+├── def_processing.py
 ├── molecule_first_iso_final.csv
 ├── molecule_first_iso_final.pickle
+├── diff_merged_utf8.csv
+├── calculations.py
+├── nohup_calculations.py
+├── find_diff.py
 ├── total_life_three_versions.py
 ├── alternative_byline.py
 ├── alternative_sql.py
@@ -136,6 +135,7 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── AlO.csv
 │   ├── CH4.csv
 │   ├── CS.csv
+│   ├── H2CO.csv
 │   ├── H2O.csv
 │   ├── H2O2.csv
 │   ├── H2_p.csv
@@ -147,7 +147,9 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   ├── NaCl.csv
 │   ├── NaH.csv
 │   ├── PN.csv
+│   ├── SO3.csv
 │   ├── ScH.csv
+│   ├── SiH.csv
 │   ├── SiH2.csv
 │   ├── SiH4.csv
 │   ├── SiO.csv
@@ -166,6 +168,9 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   │   └── v3
 │   │       ├── CS_23-08-2021.csv
 │   │       └── CS_24-08-2021.csv
+│   ├── H2CO
+│   │   └── v3
+│   │       └── H2CO_24-08-2021.csv
 │   ├── H2O
 │   │   └── v3
 │   │       └── H2O_16-08-2021.csv
@@ -200,9 +205,15 @@ After the above-mentioned two steps, the file structure of this repository is (i
 │   │   └── v3
 │   │       ├── PN_23-08-2021.csv
 │   │       └── PN_24-08-2021.csv
+│   ├── SO3
+│   │   └── v3
+│   │       └── SO3_24-08-2021.csv
 │   ├── ScH
 │   │   └── v3
 │   │       └── ScH_23-08-2021.csv
+│   ├── SiH
+│   │   └── v3
+│   │       └── SiH_24-08-2021.csv
 │   ├── SiH2
 │   │   └── v3
 │   │       ├── SiH2_11-08-2021.csv
@@ -228,6 +239,7 @@ After the above-mentioned two steps, the file structure of this repository is (i
     ├── CH4_v3_17-08-2021.csv
     ├── CS_v3_23-08-2021.csv
     ├── CS_v3_24-08-2021.csv
+    ├── H2CO_v3_24-08-2021.csv
     ├── H2O2_v3_16-08-2021.csv
     ├── H2O_v3_16-08-2021.csv
     ├── H2_p_v3_24-08-2021.csv
@@ -240,10 +252,12 @@ After the above-mentioned two steps, the file structure of this repository is (i
     ├── NaH_v3_23-08-2021.csv
     ├── PN_v3_23-08-2021.csv
     ├── PN_v3_24-08-2021.csv
+    ├── SO3_v3_24-08-2021.csv
     ├── ScH_v3_23-08-2021.csv
     ├── SiH2_v3_11-08-2021.csv
     ├── SiH2_v3_23-08-2021.csv
     ├── SiH4_v3_21-08-2021.csv
+    ├── SiH_v3_24-08-2021.csv
     ├── SiO2_v3_10-08-2021.csv
     ├── SiO_v3_16-08-2021.csv
     ├── SiO_v3_23-08-2021.csv
@@ -252,7 +266,7 @@ After the above-mentioned two steps, the file structure of this repository is (i
     ├── SiS_v3_24-08-2021.csv
     └── VO_v3_16-08-2021.csv
 
-45 directories, 86 files
+51 directories, 95 files
 
 ```
 Finally, there are some alternative codes used in the discussion part of the report. It's not uncessary to run these codes to get the intended results.
