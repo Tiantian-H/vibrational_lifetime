@@ -111,6 +111,6 @@ molecule_first_iso_final = pd.merge(molecule_df_first_iso, def_info, on='molecul
 
 molecule_first_iso_final.to_csv('molecule_first_iso_final.csv')
 molecule_first_iso_final.to_pickle('molecule_first_iso_final.pickle')
-molecule_first_iso_final.to_csv('molecule_final.csv')
+#molecule_first_iso_final.to_csv('molecule_final_output.csv')
 
 

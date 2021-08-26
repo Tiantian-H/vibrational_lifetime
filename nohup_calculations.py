@@ -5,14 +5,13 @@ import glob
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-#import gc
 import os
 import time
 
 #############  choose which molecule to be processed #############
 molecule = "SO3"
 ##################################################################
-
+# linux command to run this code:
 # nohup python3 nohup_calculations.py > ./log/nohup_calculations.log 2>&1 &
 
 
@@ -27,9 +26,8 @@ iso_info = pd.read_pickle("molecule_first_iso_final.pickle")
 all_molecules = set(iso_info["molecule"])
 diff_merged = pd.read_csv("diff_merged_utf8.csv")
 wrong_molecules = set(diff_merged["molecule"])
-add_wrong_modules = {'LiH'}
+add_wrong_modules = {'PH','H2','LiH',"CO2","H3O_p","LiH_p","CH","MgH","CH","trans-P2H2"} #known issues about the files or wrong headers or the ground state energy is not 0
 correct_molecules = all_molecules - wrong_molecules # ignore the molecules with wrong headers
-correct_molecules =  correct_molecules - {'trans-P2H2'} # data not available on the website
 correct_molecules = correct_molecules -add_wrong_modules 
 # ignore the molecules whose recommended linelist is MoLLIST since they are not complete which may lead to some very strange vibrational lifetimes.
 MoLLIST = set(iso_info.loc[iso_info["linelist"]=='MoLLIST','molecule']) 
@@ -41,7 +39,6 @@ print(" ")
 print(list(correct_molecules))
 print(" ")
 
-#molecule = input("Please enter the name of the molecule:")
 if molecule not in correct_molecules:
     raise IndexError("The header of this molecule in the def file is not consistent with the actual states file!")
 
@@ -61,15 +58,11 @@ if os.path.exists('original_result'):
 else:
     os.makedirs('original_result', exist_ok=True)
 
-if os.path.exists('v1_result'):
-    pass
-else:
-    os.makedirs('v1_result', exist_ok=True)
-
-#if os.path.exists('v2_result'):
+#if os.path.exists('v1_result'):
 #    pass
 #else:
-#    os.makedirs('v2_result', exist_ok=True)
+#    os.makedirs('v1_result', exist_ok=True)
+
 
 if os.path.exists('v3_result'):
     pass
@@ -109,9 +102,7 @@ else:
 path_mol_iso_list = list(molecule+'/'+iso_slug+'/'+isotopologue)
 path_mol_iso = path_mol_iso_list[0]
 read_path = '../../exomol/exomol3_data/'
-#'../exomol/exomol3_data/'
-# './www.exomol.com/db/'
-#'../exomol/exomol3_data/'
+
 
 ## read states file
 # manually adjust headers due to incorrect def file
@@ -150,8 +141,7 @@ if molecule == "H2O2":
 if molecule == "NaH":
     states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'tau_i','State','v']
 
-#['i','E_i','g','J_i','tau_i','+/-','e/f','State','v','Lambda','Sigma','Omega']
-#iso_info.loc[iso_info["molecule"]==molecule ,"headers"].values[0]
+
 s_df = dict()
 states_df = pd.DataFrame()
 states_filenames = glob.glob(read_path + path_mol_iso + '/' + path_mol_iso.split('/')[1]+ '__' + path_mol_iso.split('/')[2] + '.states.bz2')
@@ -175,13 +165,6 @@ states_df_complete = states_df.copy()
 # drop all the records with negative states
 colnames = states_df.columns.values.tolist()
 print('colnames:',colnames)
-#if 'Lambda' in colnames:
-#    labels = ["State",'v','Lambda','Sigma','Omega']
-#    states_df.drop(states_df[states_df.v<0].index,inplace= True)
-
-#elif 'v' in colnames:
-#    labels = ['v']
-#    states_df.drop(states_df[states_df.v<0].index,inplace= True)
 
 if 'V' in colnames:
     states_df = states_df.rename(columns={'V':'v'})
