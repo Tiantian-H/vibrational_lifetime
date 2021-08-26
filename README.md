@@ -25,7 +25,7 @@ This is to guarantee that the relative path in the code is correct. The detailed
 
 3.If the file/data name or struture on the ExoMol database or the exoweb changes in the future, the implementation of the code may be affected. In this case, please contact the autor of this code to do some modification accordingly.
 
-4.Some molecules whose headers of the states files extracted from the def file are not consistent with the actual states file, so they are temporarily ignored. But it's possible to manually correct their headers in two simple steps are process thses molecules. This will be described in the last part of this documentation.
+4.Some molecules whose headers of the states files extracted from the def file are not consistent with the actual states file, so they are temporarily ignored. But it's possible to manually correct their headers within two simple steps. This will be described in the last part of this documentation.
 
 5.For molecules whose energy at the ground state is not 0, you will not be able to obtain the result. Instead, traceback will be returned pointing out that the ground state energy is not 0.
 
@@ -344,7 +344,11 @@ correct_molecules = correct_molecules | {"your molecule","CH","NH3","CO2","H3O_p
 Where "your molecule" is the molecule you want to add. 
 In fact , molecules like "CH","NH3","CO2"... here are also molecules with inaccurate headers that I manually added before.
 
-Manually add the headers of this molecule. For instance, for NaH, you should add:
+Manually add the headers of this molecule at the place after this comment:
+``` bash
+# manually correct headers for some molecules whose headers from the def files are not right
+```
+For instance, for NaH, you should add:
 ```bash
 if molecule == "NaH":
     states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'tau_i','State','v']
