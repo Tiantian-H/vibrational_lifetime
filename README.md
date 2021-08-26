@@ -1,12 +1,31 @@
 # A database of vibrational state lifetime
 
 UCL MSc Scientific and Data Intensive Computing Research Project 
+
 By Tiantian He
 
 
 ## Purpose
 
 The project has constructed a new database that contains the vibrational state lifetimes as well as the partial lifetimes decaying from each initial state to their final states. This has been done using the molecule line lists extracted from the ExoMol database.
+
+## Important Notes
+
+To guarantee that this code can be implemented successfully, you should guarantee that:
+
+1.You should use the exoweb, becuase the programming is based on the assumption that all the data from the ExoMol database have already existed. (But it should be fine if you download all the data from the ExoMol database locally on your own device and put them in the exactly same structure as that on the exoweb).
+
+2.No matter you clone the repository from the GitHub by yourself, or use the repository that already exists in the file called lifetime_example_file on the exoweb, you should guarantee that you are in the correct path:
+```bash
+/mnt/data/<working_file>/vibrational_lifetime
+```
+Where "working_file" should be your own file or the file called lifetime_example_file that already exists. "vibrational_lifetime" is the name of this GitHub repository.
+
+This is to guarantee that the relative path in the code is correct. The detailed steps of doing this can be found later in this documentation.
+
+3.If the file/data name or struture on the ExoMol database or the exoweb changes in the future, the implementation of the code may be affected. In this case, please contact the autor of this code to do some modification accordingly.
+
+4.Some molecules whose headers of the states files extracted from the def file are not consistent with the actual states file, so they are temporarily ignored. But it's possible to manually correct their headers in two simple steps are process thses molecules. This will be described in the last part of this documentation.
 
 ## Environment
 
@@ -80,11 +99,16 @@ This piece of code reads the information of molecules from linelist.csv to obtai
 
 This piece of code finds out the molecules whose headers in the actual states file are not consistent with those extracted from the def file. The output file is diff_merged_utf8.csv. However, since diff_merged_utf8.csv has already been genrated in advance and exists in the repository, this code can be skipped.
 
-4.calculations.py 
+4.calculations.py/ nohup_calculations.py
 
-This is the main code for calculating the total lifetime and partial lifetime. You need to enter the name of the molecule that you want to calculate when you run the code each time.
+This is the main code for calculating the total lifetime and partial lifetime. There are two versions. You can use either of them.
 
-The output files are:
+Interactive version: calculations.py
+You need to enter the name of the molecule that you want to calculate when you run the code each time. You can get some feedback in real time from your terminal. 
+
+Non-hang-up version: nohup_calculations.py
+
+The output files of calculations.py or nohup_calculations.py are:
 
 a.compute_info/molecule: 
 This file contains some useful information for each calculation, like the date, the computing time, the vibrational state, the J value that maximizes the Boltzmann function P(J).
@@ -101,6 +125,8 @@ These are the main files needed for calculations. Apart from these, their are al
 
 ###  Step 1 Process the def files
 
+You can skip this step, since the output file of this step (molecule_first_iso_final.pickle) has already been generated for you. 
+
 ```bash
 [<username>@exoweb vibrational_lifetime]$
 cd /mnt/data/<working_file>/vibrational_lifetime
@@ -113,6 +139,28 @@ You will be able to see the list of all the molecules that you can calculate. Yo
 ```bash
 [<username>@exoweb vibrational_lifetime]$ chmod u+x calculations.py
 [<username>@exoweb vibrational_lifetime]$ python3 calculations.py
+```
+For some larger molecules, you may want to keep the code running when you log out from the exoweb. However, you need to manually enter the molecule that you want to calculate by editing the code of nohup_calculations.py using:
+
+```bash
+[<username>@exoweb vibrational_lifetime]$ nano nohup_calculations.py 
+```
+When you open the code file using nano command, you can file the following position to enter the molecule name at the very beginning:
+
+```bash
+#############  choose which molecule to be processed #############
+molecule = "SO3"
+##################################################################
+```
+The default molecule here is SO3.
+You need to save your modification by pressing control+O and then exit by pressing control+X.
+
+Then, you can run nohup_calculations.py using
+
+```bash
+[<username>@exoweb vibrational_lifetime]$ mkdir log
+[<username>@exoweb vibrational_lifetime]$ chmod u+x nohup_calculations.py
+[<username>@exoweb vibrational_lifetime]$ nohup python3 nohup_calculations.py > ./log/nohup_calculations.log 2>&1 &
 ```
 
 After the above-mentioned two steps, the file structure of this repository is (including the example outputs of some molecules):
@@ -279,3 +327,23 @@ This process the trans files line by line to obtain the total lifetimes.
 
 3. alternative_sql.py
 This uses sqlit3 to obtain  the total lifetimes.
+
+## For those molecules with inaccurate headers:
+You can manually modify the code calculations.py and nohup_calculations.py following:
+
+1.Change the code:
+```bash
+correct_molecules = correct_molecules | {"CH","NH3","CO2","H3O_p","SiH","H3_p","SiO2","VO","SiH2","H2O","AlO","H2S"}
+```
+into 
+```bash
+correct_molecules = correct_molecules | {"your molecule","CH","NH3","CO2","H3O_p","SiH","H3_p","SiO2","VO","SiH2","H2O","AlO","H2S"}
+```
+Where "your molecule" is the molecule you want to add. 
+In fact , molecules like "CH","NH3","CO2"... here are also molecules with inaccurate headers that I manually added before.
+
+Manually add the headers of this molecule. For instance, for NaH, you should add:
+```bash
+if molecule == "NaH":
+    states_col_name = ['i', 'E_i', 'g_i', 'J_i', 'tau_i','State','v']
+```

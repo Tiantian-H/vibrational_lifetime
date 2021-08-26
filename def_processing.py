@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# given that the def files for each molecule already exist on exoweb
+# This def_processing.py has referred to Jingxin Zhang's code of 
+# processing the def files in her MSc project called A relational Database to Store Measured High-Resolution Spectra (UCL,2020)
+# Assume that the def files for each molecule already exist on exoweb.
+
 import pandas as pd
 import numpy as np
 import glob
 
 molecule_df_first_iso = pd.read_csv("linelist.csv")
-# Read Def File of the first iso for each molecule (78 in total)
-def_url = []#pd.DataFrame()
+# Read Def File of the first iso for each molecule 
+def_url = []
 def_num = len(molecule_df_first_iso) 
 molecule_list = molecule_df_first_iso["molecule"].values
 iso_slug_list = molecule_df_first_iso["iso_slug"].values
@@ -15,13 +18,11 @@ isotopologue_list = molecule_df_first_iso["linelist"].values
 
 
 # Extract the def files 
-#path = "./data/def"
 def_col_name = ['c0', '#', 'c1', 'c2', 'c3', 'c4', 'c5']
 truncate_E = []
 # headers = basic_headers (+ tau_i, if lifetime exists) + rest_headers
 basic_headers = ['i','E_i','g_i','J_i']
 rest_headers = []
-#exist_life_pos = np.zeros(len(files))#np.zeros(len(molecule_df_first_iso))
 filename_def = []
 trans_lines_num_total = []
 trans_files_num = []
@@ -55,10 +56,9 @@ for molecule in molecule_list:
         if def_df[c1.isin(['Lifetime'])]['c0'].values == '1':
             life_def_filename.append(def_filename)
             count += 1 
-            #exist_life_pos[tot-1] = 1
             exist_life_pos.append(1)
         else:
-            exist_life_pos.append(0)
+            exist_life_pos.append(1)
             no_life_def_filename.append(def_filename)
         E = list(def_df.loc[def_df['c2']=="energy",'c0'])
         if E == []:
@@ -96,12 +96,6 @@ print('There are altogether ', tot, ' def files.\n')
 print('There are', count, 'def files with lifetime availability = 1')
 
 
-# def_molecule = []
-# for name in filename_def:
-#     if name.split("_")[1] == "p":
-#         def_molecule.append(name.split("_")[0]+"_"+name.split("_")[1])
-#     else:
-#         def_molecule.append(name.split("_")[0])
     
 for i in range(len(rest_headers)):
     if exist_life_pos[i] ==1:
