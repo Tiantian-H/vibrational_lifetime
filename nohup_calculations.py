@@ -74,10 +74,10 @@ if os.path.exists('decay_result'):
 else:
     os.makedirs('decay_result', exist_ok=True)
     
-if os.path.exists('decay_result/'+ molecule+'/v1'):
-    pass
-else:
-    os.makedirs('decay_result/'+ molecule+'/v1', exist_ok=True)
+#if os.path.exists('decay_result/'+ molecule+'/v1'):
+#    pass
+#else:
+#    os.makedirs('decay_result/'+ molecule+'/v1', exist_ok=True)
     
 if os.path.exists('decay_result/'+ molecule+'/v3'):
     pass

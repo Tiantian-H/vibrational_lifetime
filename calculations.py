@@ -13,7 +13,8 @@ date = date.replace('/','-')
 start_time = time.time()
 
 ## Some codes of obtaining version 1 and version 2 of the results have been tried before. 
-## Because version 3 is the final version, the code of other two versions have been commented.
+## Because version 3 is the final version, the code of other two versions have been kept but commented. 
+## The file decay_result/v1 was created before when trying the version 1 of the result. Now it's empty.
 ## The file called original_result stores some intermediate outputs, which can be ignore by you.
 
 ## load infomation from def file 
@@ -76,10 +77,10 @@ if os.path.exists('decay_result'):
 else:
     os.makedirs('decay_result', exist_ok=True)
     
-if os.path.exists('decay_result/'+ molecule+'/v1'):
-    pass
-else:
-    os.makedirs('decay_result/'+ molecule+'/v1', exist_ok=True)
+#if os.path.exists('decay_result/'+ molecule+'/v1'):
+#    pass
+#else:
+#    os.makedirs('decay_result/'+ molecule+'/v1', exist_ok=True)
     
 if os.path.exists('decay_result/'+ molecule+'/v3'):
     pass
