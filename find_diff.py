@@ -48,7 +48,8 @@ for molecule in molecule_list:
             num = num +1
             #print(num)
         except:
-            print(read_path + path_mol_iso + '/' + path_mol_iso.split('/')[1]+ '__' + path_mol_iso.split('/')[2] + '.states.bz2')
+            print("write out the diff_merged.csv file")
+            #print(read_path + path_mol_iso + '/' + path_mol_iso.split('/')[1]+ '__' + path_mol_iso.split('/')[2] + '.states.bz2')
     else:
         continue
 
@@ -56,5 +57,5 @@ diff_dict = {"molecule":wrong_molecule,"num_from_states":num_from_states,"num_fr
 diff_molecule = pd.DataFrame(diff_dict)
 
 diff_merged = pd.merge(diff_molecule,iso_info[["molecule","linelist","iso_slug","headers"]], on='molecule',how="left")
-diff_merged.to_csv("diff_merged_.csv")
+diff_merged.to_csv("diff_merged.csv")
 
