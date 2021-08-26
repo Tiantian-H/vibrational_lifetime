@@ -27,7 +27,7 @@ This is to guarantee that the relative path in the code is correct. The detailed
 
 4.Some molecules whose headers of the states files extracted from the def file are not consistent with the actual states file, so they are temporarily ignored. But it's possible to manually correct their headers in two simple steps are process thses molecules. This will be described in the last part of this documentation.
 
-5. For molecules whose energy at the ground state is not 0, you will not be able to obtain the result. Instead, traceback will be returned pointing out that the ground state energy is not 0.
+5.For molecules whose energy at the ground state is not 0, you will not be able to obtain the result. Instead, traceback will be returned pointing out that the ground state energy is not 0.
 
 ## Environment
 
